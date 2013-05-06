@@ -24,7 +24,7 @@ import org.apache.maven.project.MavenProjectHelper;
 import org.codehaus.plexus.archiver.ArchiverException;
 import org.codehaus.plexus.archiver.jar.JarArchiver;
 import org.codehaus.plexus.archiver.jar.Manifest;
-import org.codehaus.plexus.archiver.jar.Manifest.Section;
+import org.codehaus.plexus.archiver.jar.Manifest.ExistingSection;
 import org.codehaus.plexus.archiver.jar.ManifestException;
 import org.codehaus.plexus.util.IOUtil;
 
@@ -180,7 +180,7 @@ public class HpiMojo extends AbstractHpiMojo {
         PrintWriter printWriter = null;
         try {
             Manifest mf = ma.getManifest(project, archive.getManifest());
-            Section mainSection = mf.getMainSection();
+            ExistingSection mainSection = mf.getMainSection();
             setAttributes(mainSection);
 
             printWriter = new PrintWriter(new OutputStreamWriter(new FileOutputStream(manifestFile),"UTF-8"));

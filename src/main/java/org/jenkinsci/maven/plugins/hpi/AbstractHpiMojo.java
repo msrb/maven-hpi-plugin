@@ -31,7 +31,7 @@ import org.apache.maven.project.MavenProjectBuilder;
 import org.codehaus.plexus.archiver.ArchiverException;
 import org.codehaus.plexus.archiver.UnArchiver;
 import org.codehaus.plexus.archiver.jar.Manifest.Attribute;
-import org.codehaus.plexus.archiver.jar.Manifest.Section;
+import org.codehaus.plexus.archiver.jar.Manifest.ExistingSection;
 import org.codehaus.plexus.archiver.jar.ManifestException;
 import org.codehaus.plexus.archiver.manager.ArchiverManager;
 import org.codehaus.plexus.archiver.manager.NoSuchArchiverException;
@@ -645,9 +645,6 @@ public abstract class AbstractHpiMojo extends AbstractJenkinsMojo {
             unArchiver.setDestDirectory(location);
             unArchiver.extract();
         }
-        catch (IOException e) {
-            throw new MojoExecutionException("Error unpacking file: " + file + "to: " + location, e);
-        }
         catch (ArchiverException e) {
             throw new MojoExecutionException("Error unpacking file: " + file + "to: " + location, e);
         }
@@ -900,7 +897,7 @@ public abstract class AbstractHpiMojo extends AbstractJenkinsMojo {
     }
 
 
-    protected void setAttributes(Section mainSection) throws MojoExecutionException, ManifestException, IOException {
+    protected void setAttributes(ExistingSection mainSection) throws MojoExecutionException, ManifestException, IOException {
         File pluginImpl = new File(project.getBuild().getOutputDirectory(), "META-INF/services/hudson.Plugin");
         if(pluginImpl.exists()) {
             BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(pluginImpl),"UTF-8"));

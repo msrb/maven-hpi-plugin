@@ -8,7 +8,7 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.codehaus.plexus.archiver.jar.Manifest;
 import org.codehaus.plexus.archiver.jar.Manifest.Attribute;
-import org.codehaus.plexus.archiver.jar.Manifest.Section;
+import org.codehaus.plexus.archiver.jar.Manifest.ExistingSection;
 import org.codehaus.plexus.archiver.jar.ManifestException;
 import org.codehaus.plexus.util.IOUtil;
 
@@ -51,7 +51,7 @@ public class HplMojo extends AbstractHpiMojo {
         PrintWriter printWriter = null;
         try {
             Manifest mf = new Manifest();
-            Section mainSection = mf.getMainSection();
+            ExistingSection mainSection = mf.getMainSection();
             setAttributes(mainSection);
 
             // compute Libraries entry
